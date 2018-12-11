@@ -34,6 +34,10 @@ h1 {
 
 #button_wrapper {
     display: none;
+    width: 70%;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
 }
 
 #toolbar {
@@ -51,12 +55,12 @@ h1 {
 }
 
 svg .highlighted {
-    fill : blue;
+    fill : #2084a9;
     z-index: 99;
 }
 
 #toolbar .highlighted {
-    background: blue;
+    background: #2084a9;
 }
 
 #toolbar .table_wrapper {
@@ -69,10 +73,10 @@ svg .highlighted {
 
 #toolbar .table_wrapper td {
     font-weight: 300;
-    color : #777;
+    color : #999;
 }
 
 #toolbar select {
-    background: #423a6f;
-    color : #7c6dcc;
+    background: #2084a9;
+    color : #ccc;
 }

@@ -1,10 +1,8 @@
 function createForceNetwork() {
-    console.log(`/data/${files[usedFile].file}`)
-
     fetch(`/data/${files[usedFile].file}`)
     .then(res => res.json())
     .then(data => {
-        var width = 600, height = 600
+        var width = 400, height = 600
         const { nodes, edges } = data;
 
         edges.sort((a, b) => b.weight - a.weight);

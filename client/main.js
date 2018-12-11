@@ -30,9 +30,14 @@ const files = [
         file : 'norm_eigenvector.json'
     },
     {
-        name : "timemap",
+        name : "sended map",
         type : "timemap",
-        file : 'norm_eigenvector.json'
+        file : 'sendedByDate.json'
+    },
+    {
+        name : "received map",
+        type : "timemap",
+        file : 'receivedByDate.json'
     }
 ];
 
