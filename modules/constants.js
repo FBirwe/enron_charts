@@ -16,6 +16,8 @@ module.exports.FILES = {
     CLIENT_DATA_DIR : path.join( CLIENT_DIR, "data"),
     DATA_DIR,
     DEGREE_DIR,
+    PERSONS_FILE : path.join( DATA_DIR, 'java_persons.json'),
+    SPECTRAL_CLUSTER_FILE : path.join( DATA_DIR, 'spectralCluster.csv'),
     CONNECTIONS_FILE : path.join( DEGREE_DIR, 'connections.txt'),
     INBOUND_DEGREE_FILE : path.join( DEGREE_DIR, 'inbound_degree.txt' ),
     OUTBOUND_DEGREE_FILE : path.join( DEGREE_DIR, 'outbound_degree.txt' ),

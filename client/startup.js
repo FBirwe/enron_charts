@@ -9,8 +9,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         if( files[ usedFile ].type === 'force-network' ) {
             createForceNetwork();
-        } else {
+        } else if( files[ usedFile ].type === 'timemap' ) {
             startTimechart();
+        } else {
+            renderSpectralCluster();
         }
     })
 });

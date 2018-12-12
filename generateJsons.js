@@ -3,6 +3,7 @@ const path = require('path');
 const constants = require('./modules/constants');
 
 getMostImportantPersons();
+writeClientFiles();
 
 function writeClientFiles() {
     generateJSON( constants.FILES.CONNECTIONS_FILE )
@@ -30,6 +31,11 @@ function writeClientFiles() {
     
         generateClientFile(data, constants.FILES.EIGENVECTOR_FILE, data => {
             fs.writeFile( path.join( constants.FILES.CLIENT_DATA_DIR, "eigenvector.json"), JSON.stringify(data), err => err ? console.log(err) : console.log("file written!"));
+        })
+
+        getSpectralCluster()
+        .then(data => {
+            fs.writeFile( path.join( constants.FILES.CLIENT_DATA_DIR, 'spectral_cluster.json'), JSON.stringify(data), err => err ? console.log(err) : console.log("file written!"));
         })
     })
 }
@@ -139,6 +145,34 @@ function generateClientFile( data, inputFile, callback) {
     })
 }
 
+function getSpectralCluster() {
+    return new Promise((res, rej) => {
+        const persons = require( constants.FILES.PERSONS_FILE );
+
+        fs.readFile( constants.FILES.SPECTRAL_CLUSTER_FILE, { encoding : 'utf8' }, (err, data) => {
+            if(err) {
+                rej(err);
+            } else {
+                const lines = data.split('\n');
+                const out = [];
+
+                for(let i in lines) {
+                    const split = lines[i].split(';');
+
+                    if(split.length === 3) {
+                        out.push({
+                            p1 : persons[parseInt(split[0])],
+                            p2 : persons[parseInt(split[1])],
+                            cluster : parseInt(split[2])
+                        });    
+                    }
+                }
+
+                res(out);
+            }
+        });
+    })    
+}
 
 function getMostImportantPersons() {
     const promises = [

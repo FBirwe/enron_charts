@@ -38,6 +38,11 @@ const files = [
         name : "received map",
         type : "timemap",
         file : 'receivedByDate.json'
+    },
+    {
+        name : "spectral cluster",
+        type : "coordinate_system",
+        file : 'spectral_cluster.json'
     }
 ];
 

@@ -126,26 +126,57 @@ function createForceNetwork() {
         }
 
         function ticked() {
+            const margin = 20;
+
+            const getRadius = d => {
+                let r = nodeScale(d.value);
+                if( d.value < minValue ) {
+                    r = 5;
+                }
+
+                return r;
+            }
+
+            const getX = d => {
+                if(d.x < margin ) {
+                    return margin + getRadius(d);
+                } else if ( d.x > width - margin ) {
+                    return width - margin - getRadius(d);
+                } else {
+                    return d.x;
+                }
+            }
+
+            const getY = d => {
+                if(d.y < margin ) {
+                    return margin + getRadius(d);
+                } else if ( d.y > height - margin ) {
+                    return height - margin - getRadius(d);
+                } else {
+                    return d.y;
+                }
+            }
+
             u.merge(u)
-            .attr('cx', function(d) {
-            return d.x
+            .attr('cx', (d) => {
+                return getX(d);
             })
-            .attr('cy', function(d) {
-            return d.y
-              })
+            .attr('cy', (d) => {
+                return getY(d);
+            })
     
             l
             .attr('x1', d => {
-                return d.source.x
+                return getX(d.source);
             })
             .attr('y1', d => {
-                return d.source.y
+                return getY(d.source);
             })
             .attr('x2', d => {
-                return d.target.x
+                return getX(d.target);
             })
             .attr('y2', d => {
-                return d.target.y
+                return getY(d.target);
             })
     
             // <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
